@@ -1,0 +1,48 @@
+{
+  "version": "v4",
+  "repo": "borisyankov/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "angularjs/angular.d.ts": {
+      "commit": "3ee59b28b6c492d59c42bafd880d2c4d64788cbb"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "3ee59b28b6c492d59c42bafd880d2c4d64788cbb"
+    },
+    "angular-ui-bootstrap/angular-ui-bootstrap.d.ts": {
+      "commit": "237339b0238845b027431280c72dc663ca534132"
+    },
+    "angular-ui-router/angular-ui-router.d.ts": {
+      "commit": "237339b0238845b027431280c72dc663ca534132"
+    },
+    "angularjs/angular-resource.d.ts": {
+      "commit": "237339b0238845b027431280c72dc663ca534132"
+    },
+    "rx/rx.d.ts": {
+      "commit": "ea1030269b50762d8b259e233a50e42953cda0de"
+    },
+    "rx/rx-lite.d.ts": {
+      "commit": "ea1030269b50762d8b259e233a50e42953cda0de"
+    },
+    "rx/rx.async.d.ts": {
+      "commit": "ea1030269b50762d8b259e233a50e42953cda0de"
+    },
+    "rx/rx.async-lite.d.ts": {
+      "commit": "ea1030269b50762d8b259e233a50e42953cda0de"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "641df27e73ca67fa7199a3deedae104198d41a17"
+    },
+    "moment/moment.d.ts": {
+      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+    },
+    "moment/moment-node.d.ts": {
+      "commit": "94d8775a947f626269b06ccadd6f5e61839389d0"
+    },
+    "angularjs/angular-mocks.d.ts": {
+      "commit": "3ee59b28b6c492d59c42bafd880d2c4d64788cbb"
+    }
+  }
+}

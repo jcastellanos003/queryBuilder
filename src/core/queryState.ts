@@ -1,0 +1,8 @@
+export enum QueryState { 
+  INITIAL = 0, 
+  PROPERTY_TERM = 1,
+  OPERATOR_TERM = 2,
+  PROPERTY_VALUE = 3,
+  CONCAT_TERM = 4,
+  PROPERTY_MULTIPLE_VALUES = 5
+}

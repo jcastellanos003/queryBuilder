@@ -1,0 +1,250 @@
+<div class="station-list">
+    <div class="loading-pane" ng-show="vm.tableView.loading">
+    <sw-loader></sw-loader>
+    </div>
+    <div class="pull-left">
+            <label class="custom-input checkbox_admin">
+                <input type="checkbox" ng-model="vm.tableView.state.filters.swaStationsSelected" ng-disabled="vm.checkBoxState">
+                <i class="fa fa-2x fa-square-o custom-unchecked"></i>
+                <i class="fa fa-2x fa-square-o custom-checked">
+                    <i class="fa fa-check"></i>
+                </i>
+                <span translate="cmswebclientApp.station.home.showSwaLabel">Show SWA Stations</span>
+            </label>
+    </div>
+
+    <div class="clearfix content-title">
+        <div class="btn-group btn-group-right pull-right" role="group">
+            <button
+                class="btn btn-primary" ng-disabled="vm.tableView.getSelectedItems().length < 1"
+                ng-click="vm.tableView.getSelectedItems().length > 0 && vm.deleteStation()">Delete
+            </button>
+            <button
+                class="btn btn-primary" ng-click="vm.newStation(vm.properties.isNewEntity = true)">New Station
+            </button>
+        </div>
+    </div>
+    <div>
+        <div class="table-wrapper">
+            <div class="row align_bread_crumb">
+                <div class="col-sm-3">
+                    <sw-bread-crumb></sw-bread-crumb>
+                </div>
+                <div class="col-sm-9">
+                    <div class="text-right">
+                        <sw-hide-show-columns-persistent sw-hide-show-columns-table="data-station-table"  ng-hide="vm.tableView.totalItemCount === 0">
+                        </sw-hide-show-columns-persistent>
+                    </div>
+                </div>
+            </div>
+            <query-builder model="vm.viewModel" table-view="vm.tableView" query-value="vm.tableView.rawQuery"></query-builder>
+            <div class="grid-wrapper">
+                <table id="data-station-table" sw-sticky-columns sw-col-resize overflow class="table table-bordered table-striped" ng-show="vm.tableView.totalItemCount > 0">
+                    <thead>
+                    <tr>
+                        <th class="sw-sticky-columns--sticky sw-sticky-columns--sticky-left width-action-col" data-noresize no-col-count>
+                            <span>All</span>
+                            <label class="custom-input custom-checkbox">
+                                <input type="checkbox"
+                                    id="all-selected"
+                                    ng-checked="vm.tableView.areAllRowsSelected('stationCode')"
+                                    ng-click="vm.tableView.toggleSelectAllRows('stationCode')"/>
+                                <i class="fa fa-check"></i>
+                            </label>
+                        </th>
+                        <th class="width-4-col sw-sticky-columns--sticky sw-sticky-columns--sticky-left"
+                            sw-hide-show-columns-col no-hide data-noresize>
+                                <span ng-click="vm.tableView.toggleSort('stationCode')"
+                                ng-class="vm.tableView.getSortIndicatorClass('stationCode')"
+                                class="sw-table-title-span" translate="cmswebclientApp.station.airportCode">
+                                    Airport Code
+                                </span>
+                        </th>
+                        <th class="width-16-col"
+                            sw-hide-show-columns-col init-hide>
+                                <span ng-click="vm.tableView.toggleSort('airportName')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('airportName')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.airportName">
+                                    Airport Name
+                                </span>
+                            </th>
+                            <th class="width-12-col"
+                                sw-hide-show-columns-col no-hide>
+                                <span ng-click="vm.tableView.toggleSort('cityName')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('cityName')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.cityName">
+                                    City Name
+                                </span>
+                            </th>
+                            <th class="width-4-col"
+                                sw-hide-show-columns-col no-hide>
+                                <span ng-click="vm.tableView.toggleSort('stateCode')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('stateCode')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.stateCode">
+                                    State Code
+                                </span>
+                            </th>
+                            <th class="width-5-col"
+                                sw-hide-show-columns-col no-hide>
+                                <span ng-click="vm.tableView.toggleSort('countryCode')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('countryCode')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.countryCode">
+                                    Country Code
+                                </span>
+                            </th>
+                            <th class="width-6-col"
+                                sw-hide-show-columns-col init-hide>
+                                <span ng-click="vm.tableView.toggleSort('contiguous')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('contiguous')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.contiguous">
+                                    Contiguous
+                                </span>
+                            </th>
+                            <th class="width-3-col"
+                                sw-hide-show-columns-col init-hide>
+                                <span ng-click="vm.tableView.toggleSort('a012')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('a012')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.a012">
+                                    A012
+                                </span>
+                            </th>
+                            <th class="width-4-col"
+                                sw-hide-show-columns-col>
+                                <span ng-click="vm.tableView.toggleSort('domesticInternationalIndicator')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('domesticInternationalIndicator')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.domIntnlInd">
+                                    Dom / int
+                                </span>
+                            </th>
+                            <th class="width-6-col"
+                                sw-hide-show-columns-col>
+                                <span ng-click="vm.tableView.toggleSort('usCustomsClearanceIndicator')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('usCustomsClearanceIndicator')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.usCstmsclrncInd">
+                                    US Customs Clearance
+                                </span>
+                            </th>
+                            <th class="width-4-col"
+                                sw-hide-show-columns-col init-hide>
+                                <span ng-click="vm.tableView.toggleSort('swaStation')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('swaStation')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.swaStation">
+                                    SWA Station
+                                </span>
+                            </th>
+                            <th class="width-9-col"
+                                sw-hide-show-columns-col>
+                                <span ng-click="vm.tableView.toggleSort('localTimeZoneName')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('localTimeZoneName')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.localTimeZoneName">
+                                    Time Zone
+                                </span>
+                            </th>
+                            <th class="width-4-col"
+                                sw-hide-show-columns-col init-hide>
+                                <span ng-click="vm.tableView.toggleSort('pairingAlphaPrefixCode')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('pairingAlphaPrefixCode')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.prngAlphPrfxCde">
+                                    Pair Prefix
+                                </span>
+                            </th>
+                            <th class="width-6-col"
+                                sw-hide-show-columns-col init-hide>
+                                <span ng-click="vm.tableView.toggleSort('color')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('color')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.color">
+                                    Base Color
+                                </span>
+                            </th>
+                            <th class="width-5-col"
+                                sw-hide-show-columns-col init-hide>
+                                <span ng-click="vm.tableView.toggleSort('latitude')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('latitude')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.latitude">
+                                    latitude
+                                </span>
+                            </th>
+                            <th class="width-5-col"
+                                sw-hide-show-columns-col init-hide>
+                                <span ng-click="vm.tableView.toggleSort('longitude')"
+                                    ng-class="vm.tableView.getSortIndicatorClass('longitude')"
+                                    class="sw-table-title-span" translate="cmswebclientApp.station.longitude">
+                                    Longitude
+                                </span>
+                        </th>
+                        <th class="sw-sticky-columns--sticky sw-sticky-columns--sticky-right width-action-col" data-noresize></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="station in vm.tableView.collection" class="station-row"
+                        sw-restricted-click="vm.tableView.toggleSelected(station, station.stationCode)"
+                        sw-restricted-selectors="'action-column'"
+                        ng-class="{'selected' : vm.tableView.isSelected(station.stationCode)}">
+                        <td class="text-center sw-sticky-columns--sticky sw-sticky-columns--sticky-left width-action-col">
+                            <label class="custom-input custom-checkbox action-column">
+                                <input type="checkbox"
+                                    ng-checked="vm.tableView.isSelected(station.stationCode)"
+                                    ng-click="vm.tableView.toggleSelected(station, station.stationCode)"/>
+                                <i class="fa fa-check"></i>
+                            </label>
+                        </td>
+                        <td class="sw-sticky-columns--sticky sw-sticky-columns--sticky-left width-4-col">{{station.stationCode}}</td>
+                        <td>{{station.airportName}}</td>
+                        <td>{{station.cityName}}</td>
+                        <td>{{station.stateCode}}</td>
+                        <td>{{station.countryCode}}</td>
+                        <td>
+                            <label class="custom-input">
+                                <input type="checkbox"
+                                    ng-disabled="true"
+                                    ng-checked="{{station.contiguous}}"/>
+                                    <i ng-show="station.contiguous" class="fa fa-circle"></i>
+                                    <i ng-show="!station.contiguous" class="fa fa-circle-o"></i>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="custom-input custom-checkbox">
+                                <input type="checkbox"
+                                    ng-disabled="true"
+                                    ng-checked="{{station.a012}}"/>
+                                    <i ng-show="station.a012" class="fa fa-circle"></i>
+                                    <i ng-show="!station.a012" class="fa fa-circle-o"></i>
+
+                            </label>
+                        </td>
+                        <td>{{station.domesticInternationalIndicator}}</td>
+                        <td>{{station.usCustomsClearanceIndicator}}</td>
+                        <td>
+                            <label class="custom-input">
+                                <input type="checkbox"
+                                    ng-disabled="true"
+                                    ng-checked="{{station.swaStation}}"/>
+                                    <i ng-show="station.swaStation" class="fa fa-circle"></i>
+                                    <i ng-show="!station.swaStation" class="fa fa-circle-o"></i>
+
+                            </label>
+                        </td>
+                        <td>{{station.localTimeZoneName}}</td>
+                        <td>{{station.pairingAlphaPrefixCode}}</td>
+                        <td>
+                            <div ng-attr-style="width: 100%; height: 18px; background-color: rgb({{ station.colorInfo.rgb }}); text-align: center;">
+                                <span ng-attr-style="color: {{station.colorInfo.text}};">{{station.colorInfo.name}}</span>
+                            </div>
+                        </td>
+                        <td>{{station.latitude}}</td>
+                        <td>{{station.longitude}}</td>
+                        <td class="text-center sw-sticky-columns--sticky sw-sticky-columns--sticky-right width-action-col action-column">
+                            <span class="fa fa-pencil cursor-pointer" title="Edit"
+                                ng-click="vm.updateStation(station, vm.properties.isNewEntity = false)"></span>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <sw-pagination table-view="vm.tableView"  ng-show="vm.tableView.totalItemCount > 0"/>
+        </div>
+    </div>
+    </div>
+
+</div>

@@ -1,0 +1,68 @@
+<div class="form-inline searchBox-container">
+    <label for="queryDynamicInput"
+           translate="global.queryBuilder.search">
+    </label>
+    <div class="input-group searchBox-group">
+        <span class="input-group-addon" id="basic-addon2">
+            <span class="fa {{queryBuilderCtrl.current.icon}}"
+            aria-hidden="true"></span>
+        </span>
+        <textarea rows="1"
+               autocomplete="off" 
+               name="queryDynamicInput" 
+               ng-click="queryBuilderCtrl.getCursorPosition($event)"  
+               ng-model="queryBuilderCtrl.selected" 
+               ng-model-options="{ debounce: { 'default': 250, 'blur': 250 } }" 
+               ng-paste="queryBuilderCtrl.handleQueryPasted($event)"
+               id="field-query-buider"
+               uib-typeahead="properties for properties in queryBuilderCtrl.getNextTerms($viewValue) | filter:queryBuilderCtrl.filterText($viewValue) | limitTo:31"
+               class="form-control searchBox-Box"
+               typeahead-append-to-body="true"
+               typeahead-on-select="queryBuilderCtrl.bindAllModel($item, $event)"
+               typeahead-focus-first="false" 
+               typeahead></textarea>
+        <span class="input-group-addon" id="basic-addon2">
+            <a id="glassSearch" class="btn btn-primary"><i class="fa fa-search fa-inverse"></i></a>
+        </span>
+    </div>
+    <button type="button" 
+            class="btn btn-primary saveFilterBtn disabled"
+            translate="global.queryBuilder.saveFilter">
+    </button>
+    <button type="button" 
+            class="btn btn-primary disabled"
+            translate="global.queryBuilder.myFilters">
+    </button>
+</div>
+<div class="row--heightNewSearch">
+    <div ng-hide="queryBuilderCtrl.$scope.tableView.totalItemCount === 0" class="results-align inline-block">
+        <div class="inline-block">
+            {{queryBuilderCtrl.$scope.tableView.totalItemCount}} 
+            <span translate="global.queryBuilder.resultsText">
+            </span>
+        </div>
+    </div>
+    <div class="inline-block">
+        <a  ng-hide="isInputEmpty() || queryBuilderCtrl.$scope.tableView.totalItemCount === 0" 
+            class="btn btn-link pl10 new-search" 
+            translate="global.queryBuilder.newSearch">
+        </a>
+    </div>
+</div>
+<div ng-show="queryBuilderCtrl.$scope.tableView.totalItemCount === 0" class="not-results-Search">
+   <div class="void-placeholder query-builder">
+     <div class="not-results-search-inside">
+           <div translate="global.queryBuilder.resultsTextNoResult">
+           </div>
+           <div>
+               <span translate="global.queryBuilder.modifyText">
+               </span>
+                <span>
+                    <a class="btn btn-link new-search"
+                       translate="global.queryBuilder.newSearch">
+                    </a>
+                </span>
+            </div>
+     </div>
+   </div>
+</div>

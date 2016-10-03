@@ -1,0 +1,111 @@
+@import '../../layout/assets/scss/_variables.scss';
+
+.searchBox-container {
+    padding: 10px;
+    background-color: #ECF1F6;
+    font-size: 15px;
+    border: 1px solid #c3c3c3;
+    width: 100%;
+    margin: 10px auto;
+
+    label {
+        margin-right: 10px;
+    }
+    .searchBox-group {
+        width: calc(100% - 300px);
+        margin-right: 20px;
+        border: 1px solid #c3c3c3;
+        background-color: $white;
+
+        .input-group-addon {
+            width:31px;
+            background-color: #FFF;
+            border: none;
+            padding: 0;
+            top:0;
+            height: 35px;
+
+             &#basic-addon2 {
+                vertical-align: top;
+            }
+
+            .fa-check-circle, .fa-times-circle {
+                top: 7px;
+                position: relative;
+            }
+        }
+        .input-group-addon:last-child > .btn {
+            height: 35px;
+            font-size: 17px;
+        }
+
+        .searchBox-Box, .searchBox-Box:focus {
+            outline: 0;
+            border: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            color: #000;
+            resize: none;
+            font-size: 15px;
+            font-style: normal;
+            padding: 0px 5px 0px 0px;
+            line-height: 23px;
+            margin-top: 6px;
+            margin-bottom: 5px;
+        }
+        .searchBox-Box::-ms-clear {
+            display: none;
+        }
+    }
+
+}
+
+
+.row--heightNewSearch{
+  height: 30px;
+}
+.saveFilterBtn {
+    margin-right: 10px;
+}
+.fa.fa-times-circle {
+    color: #B22F36;
+}
+
+.fa.fa-check-circle {
+    color: #22B557
+}
+@media (min-width: 1px){
+    .searchBox-container.form-inline .searchBox-group.searchBox-group .input-group-addon{
+        width: 31px;
+    }
+
+}
+
+.not-results-Search {
+    width: 100%;
+    margin: auto;
+}
+
+.not-results-search-inside {
+    width: 40%;
+    display: block;
+    margin: auto;
+
+    a {
+        font-weight: 600;
+    }
+}
+
+.btn.new-search {
+    padding: 0;
+}
+
+.void-placeholder.query-builder {
+    background-color:#ECF1F6;
+    border: 1px dashed #547185;
+    color: #547185;
+}
+
+.dropdown-menu[uib-typeahead-popup] {
+    margin-top: 6px;
+}
